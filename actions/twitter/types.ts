@@ -1,4 +1,4 @@
-type TwitterNotifications<E extends string = string> = Record<E, {
+export type TwitterNotifications<E extends string = string> = Record<E, {
   "id": E;
   "timestampMs": `${number}`;
   "icon": {

@@ -2,6 +2,7 @@ import { NotifyAction } from "../internal.ts";
 import { sleep } from "../../utils/sleep.ts";
 import { log } from "../../utils/logger.ts";
 import { bgRgb24, bold, gray, magenta, white } from "@ryu/enogu";
+import { DiscordNotifications } from "./types.ts";
 
 export class DiscordNotifyAction extends NotifyAction {
   private getNotifications: () => Promise<DiscordNotifications>;

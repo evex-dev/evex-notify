@@ -1,4 +1,4 @@
-type DiscordNotifications = {
+export type DiscordNotifications = {
   "id": `${number}`;
   "type": number;
   "content": string;

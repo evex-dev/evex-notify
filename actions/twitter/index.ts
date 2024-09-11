@@ -3,6 +3,7 @@ import { sleep } from "../../utils/sleep.ts";
 import { log } from "../../utils/logger.ts";
 import { bgBlue, bold, gray, magenta, white } from "@ryu/enogu";
 import { capitalize } from "../../utils/capitalize.ts";
+import type { TwitterNotifications } from "./types.ts";
 
 export class TwitterNotifyAction extends NotifyAction {
   private getNotifications: () => Promise<TwitterNotifications>;
