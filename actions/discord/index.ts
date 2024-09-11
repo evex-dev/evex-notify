@@ -77,6 +77,8 @@ export class DiscordNotifyAction extends NotifyAction {
 
         if (notificationDate > this.lastNotificationDate) {
           this.lastNotificationDate = notificationDate;
+          const cleanedContent = notification.content.replace(/<@[0-9]+?>\S?/g, "");
+
           log(
             bgRgb24(white("  Discord  "), 0x7289da),
             bold(
@@ -89,7 +91,7 @@ export class DiscordNotifyAction extends NotifyAction {
                 ? `$${notification.message_reference.guild_id}`
                 : `#${notification.channel_id}`
             }`,
-            `${gray(notification.content.replace(/<@[0-9]+?>\S?/g, "").slice(0, 20) + (notification.content.length > 20 ? "..." : ""))}`,
+            `${gray(cleanedContent.slice(0, 20) + (cleanedContent.length > 20 ? "..." : ""))}`,
           );
         }
       }
