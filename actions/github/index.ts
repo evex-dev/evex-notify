@@ -51,7 +51,7 @@ export class GithubNotifyAction extends NotifyAction {
         }
       }
 
-      sleep(15000);
+      sleep(60000);
     }
   }
 }
