@@ -1,0 +1,11 @@
+{
+  "tasks": {
+    "dev": "deno run -A --watch index.ts",
+    "start": "deno run -A index.ts"
+  },
+  "imports": {
+    "@ryu/enogu": "jsr:@ryu/enogu@^0.5.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "@github/octokit": "npm:octokit@^4.0.2"
+  }
+}
