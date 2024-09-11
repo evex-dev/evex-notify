@@ -1,7 +1,7 @@
 import { NotifyAction } from "../internal.ts";
 import { sleep } from "../../utils/sleep.ts";
 import { log } from "../../utils/logger.ts";
-import { bold, gray, magenta, white, bgRgb24 } from "@ryu/enogu";
+import { bgRgb24, bold, gray, magenta, white } from "@ryu/enogu";
 
 export class DiscordNotifyAction extends NotifyAction {
   private getNotifications: () => Promise<DiscordNotifications>;
@@ -77,7 +77,10 @@ export class DiscordNotifyAction extends NotifyAction {
 
         if (notificationDate > this.lastNotificationDate) {
           this.lastNotificationDate = notificationDate;
-          const cleanedContent = notification.content.replace(/<@[0-9]+?>\S?/g, "");
+          const cleanedContent = notification.content.replace(
+            /<@[0-9]+?>\S?/g,
+            "",
+          );
 
           log(
             bgRgb24(white("  Discord  "), 0x7289da),
@@ -91,7 +94,12 @@ export class DiscordNotifyAction extends NotifyAction {
                 ? `$${notification.message_reference.guild_id}`
                 : `#${notification.channel_id}`
             }`,
-            `${gray(cleanedContent.slice(0, 20) + (cleanedContent.length > 20 ? "..." : ""))}`,
+            `${
+              gray(
+                cleanedContent.slice(0, 20) +
+                  (cleanedContent.length > 20 ? "..." : ""),
+              )
+            }`,
           );
         }
       }
