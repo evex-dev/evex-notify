@@ -15,17 +15,23 @@ export class TwitterNotifyAction extends NotifyAction {
     super();
 
     this.getNotifications = async () => {
-      const xCsrfTokenResponse = await fetch(
-        "https://twitter.com/i/release_notes",
-        {
-          headers: {
-            "accept": "*/*",
-            "authorization": "Bearer " + twitterBearerToken,
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.37 (KHTML, like Gecko) Chrome/89.0.142.86 Safari/537.36",
+      let xCsrfTokenResponse: undefined | Response;
+
+      try {
+        xCsrfTokenResponse = await fetch(
+          "https://twitter.com/i/release_notes",
+          {
+            headers: {
+              "accept": "*/*",
+              "authorization": "Bearer " + twitterBearerToken,
+              "User-Agent":
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.37 (KHTML, like Gecko) Chrome/89.0.142.86 Safari/537.36",
+            },
           },
-        },
-      );
+        );
+      } catch {
+        return {};
+      }
 
       const xCsrfToken = xCsrfTokenResponse.headers.get("set-cookie")?.split(
         ", ",
